@@ -1,0 +1,27 @@
+To setup apache virtual host on windows 8.1 with a wamp version WAMPSERVER 2.5:
+
+First create directory in c:\wamp\www\example.com
+Then create directory c:\wamp\www\example.com\logs
+
+In C:\wamp\bin\apache\apache2.4.9\conf\httpd.conf find the line:
+
+LoadModule vhost_alias_module modules/mod_vhost_alias.so
+
+And if it is commented, comment out.
+
+Then find the line "Virtual hosts" (w/o quotes) and uncomment the line after:
+
+Include conf/extra/httpd-vhosts.conf
+
+Then open the C:\wamp\bin\apache\apace2.4.9\conf\extra\httpd-vhosts.conf file
+
+And add the vhost settings e.g.:
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@example.com
+    DocumentRoot "c:/wamp/www/example.com"
+    ServerName example.com
+    ServerAlias www.example.com
+    ErrorLog "logs/errors.log"
+    CustomLog "logs/access.log" common
+</VirtualHost>
